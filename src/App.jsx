@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <Description />
-      <Option updateFeedback={updateFeedback} />
+      <Option updateFeedback={updateFeedback} valueFeedback={totalFeedback} />
       <Feedback dataFeedbacks={feedbacks} totalFeedback={totalFeedback} />
     </>
   );

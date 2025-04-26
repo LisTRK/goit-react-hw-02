@@ -1,4 +1,4 @@
-export default function Option({ updateFeedback }) {
+export default function Option({ updateFeedback, valueFeedback }) {
   return (
     <div className="option">
       <button
@@ -22,13 +22,15 @@ export default function Option({ updateFeedback }) {
       >
         Bad
       </button>
-      <button
-        onClick={() => {
-          updateFeedback('reset');
-        }}
-      >
-        Reset
-      </button>
+      {valueFeedback > 0 && (
+        <button
+          onClick={() => {
+            updateFeedback('reset');
+          }}
+        >
+          Reset
+        </button>
+      )}
     </div>
   );
 }
