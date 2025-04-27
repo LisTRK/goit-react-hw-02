@@ -1,8 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import Description from './components/Description';
-import Option from './components/Option.jsx';
+import Options from './components/Options.jsx';
 import Feedback from './components/Feedback.jsx';
+import Notification from './components/Notification.jsx';
 
 function App() {
   const [feedbacks, setFeedbacks] = useState(() => {
@@ -19,12 +20,11 @@ function App() {
 
   const updateFeedback = (feedbackType) => {
     if (feedbackType === 'reset')
-      setFeedbacks({
-        ...feedbacks,
+      return {
         good: 0,
         neutral: 0,
         bad: 0,
-      });
+      };
     else
       setFeedbacks({
         ...feedbacks,
@@ -33,6 +33,7 @@ function App() {
   };
 
   const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+  const averageFeedback = Math.round((feedbacks.good / totalFeedback) * 100);
 
   useEffect(() => {
     localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
@@ -41,8 +42,16 @@ function App() {
   return (
     <>
       <Description />
-      <Option updateFeedback={updateFeedback} valueFeedback={totalFeedback} />
-      <Feedback dataFeedbacks={feedbacks} totalFeedback={totalFeedback} />
+      <Options updateFeedback={updateFeedback} valueFeedback={totalFeedback} />
+      {totalFeedback === 0 ? (
+        <Notification />
+      ) : (
+        <Feedback
+          dataFeedbacks={feedbacks}
+          totalFeedback={totalFeedback}
+          averageFeedback={averageFeedback}
+        />
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-export default function Option({ updateFeedback, valueFeedback }) {
+export default function Options({ updateFeedback, valueFeedback }) {
   return (
     <div className="option">
       <button
