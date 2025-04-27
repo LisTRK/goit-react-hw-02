@@ -20,11 +20,11 @@ function App() {
 
   const updateFeedback = (feedbackType) => {
     if (feedbackType === 'reset')
-      return {
+      setFeedbacks({
         good: 0,
         neutral: 0,
         bad: 0,
-      };
+      });
     else
       setFeedbacks({
         ...feedbacks,
