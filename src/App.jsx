@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
-  }, [totalFeedback]);
+  }, [feedbacks.good, feedbacks.neutral, feedbacks.bad]);
 
   return (
     <>
